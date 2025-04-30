@@ -17,7 +17,7 @@ input::-webkit-outer-spin-button {
 .btn,
 .black_btn,
 .outline_btn {
-  background: #dfdf07;
+  background: rgb(141, 141, 184);
   color: #111;
   font-weight: 500;
   border: none;
@@ -40,7 +40,7 @@ input::-webkit-outer-spin-button {
   }
 }
 .btn:hover {
-  background-color: #111;
+  background-color: #EAD196;
   color: #fff;
   transition: 0.3s;
   cursor: pointer;
@@ -50,24 +50,24 @@ input::-webkit-outer-spin-button {
   color: #fff;
 }
 .black_btn:hover {
-  background: #fff;
+  background:#EAD196;
   color: #111;
   transition: 0.3s;
   cursor: pointer;
 }
 .outline_btn {
   background: transparent;
-  color: #dfdf07;
-  border: 1px solid #dfdf07;
+  color: #3674B5;
+  border: 1px solid #3674B5;
 }
 .btn:hover {
-  background-color: #111;
+  background-color: #EAD196;
   color: #fff;
   transition: 0.3s;
   cursor: pointer;
 }
 .outline_btn:hover {
-  background: #dfdf07;
+  background: #EAD196;
   color: #111;
   transition: 0.3s;
   cursor: pointer;
@@ -79,6 +79,7 @@ input::-webkit-outer-spin-button {
   border-bottom: 1px solid rgb(133, 133, 133);
   padding: 20px 110px;
   align-items: center;
+  background-color: #EAD196;
 }
 .navbar .hamburger {
   display: none;
@@ -93,10 +94,10 @@ input::-webkit-outer-spin-button {
   font-size: 26px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #dfdf07;
+  color: #3674B5;
 }
 .navbar .logo img {
-  width: 120px;
+  width: 200px;
 }
 .navbar .links {
   display: flex;
@@ -116,9 +117,10 @@ input::-webkit-outer-spin-button {
   transition: 0.3s;
 }
 .navbar .links ul li a:hover {
-  color: #dfdf07;
+  color: #3674B5;
   transition: 0.3s;
 }
+
 .navbar .links ul:last-child {
   gap: 10px;
 }
@@ -248,7 +250,7 @@ input::-webkit-outer-spin-button {
 }
 
 footer {
-  background: #111;
+  background: #007074;
   display: flex;
   border-bottom: 1px solid rgb(133, 133, 133);
   padding: 40px 20px 20px 20px;
@@ -290,7 +292,7 @@ footer div ul a {
   transition: 0.3s;
 }
 footer div ul a:hover {
-  color: #dfdf07;
+  color: #3674B5;
   transition: 0.3s;
 }
 footer div ul a span {
@@ -359,7 +361,7 @@ footer div ul a span {
 .hero .box {
   max-width: 900px;
   text-align: center;
-  background: #dfdf07;
+  background: #3674B5;
   color: #111;
   padding: 50px 75px;
   border-radius: 35px;
@@ -370,8 +372,8 @@ footer div ul a span {
 .hero .box:hover {
   transform: translateY(-10px);
   transition: 0.3s;
-  background: #111;
-  color: #fff;
+  background: #EAD196;
+  color: black;
 }
 @media (max-width: 1720px) {
   .hero {
@@ -403,7 +405,7 @@ footer div ul a span {
 .services h3 {
   font-size: 1.75rem;
   font-weight: 600;
-  color: #dfdf07;
+  color: #3674B5;
   text-transform: uppercase;
 }
 .services .grid {
@@ -412,8 +414,8 @@ footer div ul a span {
   grid-gap: 50px;
 }
 .services .grid .card {
-  background: black;
-  color: #fff;
+  background: #EAD196;
+  color: #3674B5;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -422,7 +424,7 @@ footer div ul a span {
   transition: 0.3s;
 }
 .services .grid .card:hover {
-  background: #dfdf07;
+  background: #3674B5;
   color: #111;
   transition: 0.3s;
 }
@@ -445,7 +447,7 @@ footer div ul a span {
   align-items: center;
   margin: 0 auto;
   gap: 50px;
-  background: #dfdf07;
+  background: #3674B5;
 }
 .howItWorks h3 {
   font-size: 1.75rem;
@@ -586,7 +588,7 @@ footer div ul a span {
 .authPage .container form .inputTag div svg {
   width: 10%;
   font-size: 1.5rem;
-  background: #dfdf07;
+  background: #3674B5;
   height: 46px;
   padding: 8px;
   color: #fff;
@@ -598,17 +600,17 @@ footer div ul a span {
   margin-top: 25px;
   font-weight: 700;
   color: #fff;
-  background: #dfdf07;
+  background: #3674B5;
   font-size: 1.2rem;
   border-radius: 7px;
 }
 .authPage .container form a {
   padding: 12px;
   text-align: center;
-  border: 1px solid #dfdf07;
+  border: 1px solid #3674B5;
   margin-top: 25px;
   font-weight: 700;
-  color: #dfdf07;
+  color: #3674B5;
   font-size: 1.2rem;
   text-decoration: none;
   border-radius: 7px;
@@ -714,7 +716,7 @@ footer div ul a span {
   position: absolute;
   right: 16px;
   top: 11px;
-  background: #dfdf07;
+  background: #3674B5;
   color: #111;
   font-weight: 500;
   padding: 2px 10px;
@@ -877,7 +879,7 @@ footer div ul a span {
   color: #111;
 }
 .account .component_header p:last-child span {
-  color: #dfdf07;
+  color: #3674B5;
 }
 
 .account .container {
@@ -909,11 +911,11 @@ footer div ul a span {
   background: transparent;
 }
 .account .container .sidebar .sidebar_links button:hover {
-  color: #dfdf07;
+  color: #3674B5;
   transition: 0.3s;
 }
 .account .container .sidebar .sidebar_links .active {
-  color: #dfdf07;
+  color: #3674B5;
 }
 .account .container .banner {
   width: 100%;
@@ -939,7 +941,7 @@ footer div ul a span {
 .account_components h3 {
   font-size: 30px;
   font-weight: 600;
-  color: #dfdf07;
+  color: #3674B5;
 }
 .account_components div:first-child {
   font-size: 30px;
