@@ -39,6 +39,7 @@ const postApplication = asyncHandler(async (req, res, next) => {
         resume.tempFilePath,
         {
           folder: "Job_Seeker_Resume",
+          resource_type: "raw",
         }
       );
       if (!cloudinaryResponse || cloudinaryResponse.error) {

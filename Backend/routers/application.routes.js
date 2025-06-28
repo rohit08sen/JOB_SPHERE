@@ -5,7 +5,7 @@ import { deleteApplication, employerGetAllApplication, jobSeekerGetAllAplication
 const router = express.Router();
 
 router.route("/post/:id").post(verifyJwt, isAuthorized("Job Seeker"), postApplication)
-router.route("/employer/getall").get(verifyJwt, isAuthorized("Employeer"), employerGetAllApplication)
+router.route("/employer/getall").get(verifyJwt, isAuthorized("Employer"), employerGetAllApplication)
 router.route("/jobseeker/getall").get(verifyJwt, isAuthorized("Job Seeker"), jobSeekerGetAllAplication);
 router.route("/delete/:id").delete(verifyJwt, deleteApplication);
 

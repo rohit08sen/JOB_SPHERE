@@ -23,7 +23,7 @@ const Applications = () => {
       dispatch(clearAllApplicationErrors());
     }
     if (message) {
-      toast.success(message);
+      // toast.success(message);
       dispatch(resetApplicationSlice());
     }
     dispatch(fetchEmployerApplications());

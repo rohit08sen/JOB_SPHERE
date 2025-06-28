@@ -11,4 +11,6 @@ router.route("/me").get(verifyJwt, getuser);
 router.route("/update/profile").put(verifyJwt, updateProfile);
 router.route("/update/password").put(verifyJwt, changePassword);
 
+
+
 export default router;

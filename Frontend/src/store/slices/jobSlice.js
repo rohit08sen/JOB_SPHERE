@@ -103,59 +103,45 @@ const jobSlice = createSlice({
   },
 });
 
-export const fetchJobs = (city, niche, searchKeyword="") => async (dispatch) => {
-  try {
-    dispatch(jobSlice.actions.requestForAllJobs());
-    let link = "http://localhost:4000/api/v1/job/getall?";
-    let queryParams = [];
-    if (searchKeyword) {
-      queryParams.push(`searchKeyword=${searchKeyword}`);
-    }
-    if (city && city !== "All") {
-      queryParams.push(`city=${city}`);
-    }
+export const fetchJobs =
+  (city, niche, searchKeyword = "") =>
+  async (dispatch) => {
+    try {
+      dispatch(jobSlice.actions.requestForAllJobs());
 
-    /***************************************************/
-    /* BUG No.3 */
-    if (city && city === "All") {
-      queryParams = [];
-      if (searchKeyword) {
-        queryParams.push(`searchKeyword=${searchKeyword}`);
-      }
-    }
-    /***************************************************/
+      let link = "http://localhost:4000/api/v1/job/getall?";
+      let queryParams = [];
 
-    if (niche) {
-      queryParams.push(`niche=${niche}`);
-    }
-
-    /***************************************************/
-    /* BUG No.4 */
-    if (niche && niche === "All") {
-      queryParams = [];
       if (searchKeyword) {
         queryParams.push(`searchKeyword=${searchKeyword}`);
       }
       if (city && city !== "All") {
         queryParams.push(`city=${city}`);
       }
-    }
-    /***************************************************/
+      if (niche && niche !== "All") {
+        queryParams.push(`niche=${niche}`);
+      }
 
-    link += queryParams.join("&");
-    const response = await axios.get(link, { withCredentials: true });
-    dispatch(jobSlice.actions.successForAllJobs(response.data.jobs));
-    dispatch(jobSlice.actions.clearAllErrors());
-  } catch (error) {
-    dispatch(jobSlice.actions.failureForAllJobs(error.response.data.message));
-  }
-};
+      link += queryParams.join("&");
+
+      const response = await axios.get(link, { withCredentials: true });
+      dispatch(jobSlice.actions.successForAllJobs(response.data.jobs));
+      dispatch(jobSlice.actions.clearAllErrors());
+    } catch (error) {
+      const message =
+        error.response?.data?.message ||
+        error.message ||
+        "Something went wrong";
+      dispatch(jobSlice.actions.failureForAllJobs(message));
+    }
+  };
+
 
 export const fetchSingleJob = (jobId) => async (dispatch) => {
   dispatch(jobSlice.actions.requestForSingleJob());
   try {
     const response = await axios.get(
-      `https://job-portal-backend-sifx.onrender.com/api/v1/job/get/${jobId}`,
+      `http://localhost:4000/api/v1/job/get/${jobId}`,
       { withCredentials: true }
     );
     dispatch(jobSlice.actions.successForSingleJob(response.data.job));
@@ -184,7 +170,7 @@ export const getMyJobs = () => async (dispatch) => {
   dispatch(jobSlice.actions.requestForMyJobs());
   try {
     const response = await axios.get(
-      `https://job-portal-backend-sifx.onrender.com/api/v1/job/getmyjobs`,
+      `http://localhost:4000/api/v1/job/getmyjobs`,
       { withCredentials: true }
     );
     dispatch(jobSlice.actions.successForMyJobs(response.data.myJobs));
@@ -198,7 +184,7 @@ export const deleteJob = (id) => async (dispatch) => {
   dispatch(jobSlice.actions.requestForDeleteJob());
   try {
     const response = await axios.delete(
-      `https://job-portal-backend-sifx.onrender.com/api/v1/job/delete/${id}`,
+      `http://localhost:4000/api/v1/job/delete/${id}`,
       { withCredentials: true }
     );
     dispatch(jobSlice.actions.successForDeleteJob(response.data.message));

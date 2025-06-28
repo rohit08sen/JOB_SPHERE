@@ -57,35 +57,25 @@ const register = asyncHandler(async (req, res, next) => {
       try {
         const response = await cloudinary.uploader.upload(resume.tempFilePath, {
           folder: "Job_Seeker_Resume",
+          resource_type: "raw",
         });
+
         if (!response || response.error) {
           return next(
             new ErrorHandler("Failed to upload resume to cloud", 500)
           );
         }
-        /* Part	Meaning
-          resume.tempFilePath	Local path to file (uploaded by user)
-          folder: "Job_Seeker_Resume"	Upload file into this Cloudinary folder
-          await	Waits for Cloudinary to upload and return metadata
-          response	Contains secure URL and other file info*/
+
         userData.resume = {
           public_id: response.public_id,
           url: response.secure_url,
         };
-        /* Cloudinary returns a response object that contains many useful properties, such as:
-                {
-                  public_id: "Job_Seeker_Resume/abc123",
-                  secure_url: "https://res.cloudinary.com/.../abc123.pdf",
-                  original_filename: "resume",
-                  created_at: "...",
-                  ...
-                }
-        */
       } catch (error) {
         return next(new ErrorHandler("Fail to upload Resume", 500));
       }
     }
   }
+  
   const user = await User.create(userData);
   console.log(user);
   sendToken(user,201,res,"User Registerd")

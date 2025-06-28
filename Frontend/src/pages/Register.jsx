@@ -73,6 +73,7 @@ const Register = () => {
       formData.append("resume", resume);
     }
     dispatch(register(formData));
+    toast.success("Register successfully.");
   };
 
   useEffect(() => {

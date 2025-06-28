@@ -32,10 +32,12 @@ const Dashboard = () => {
       toast.error(error);
       dispatch(clearAllUserErrors());
     }
-    if (!isAuthenticated) {
+    // Only redirect when not loading
+    if (!loading && !isAuthenticated) {
       navigateTo("/");
     }
-  }, [dispatch, error, loading, isAuthenticated]);
+  }, [dispatch, error, loading, isAuthenticated, navigateTo]);
+  
 
   return (
     <>
@@ -149,29 +151,20 @@ const Dashboard = () => {
               switch (componentName) {
                 case "My Profile":
                   return <MyProfile />;
-                  break;
                 case "Update Profile":
                   return <UpdateProfile />;
-                  break;
                 case "Update Password":
                   return <UpdatePassword />;
-                  break;
                 case "Job Post":
                   return <JobPost />;
-                  break;
                 case "My Jobs":
                   return <MyJobs />;
-                  break;
                 case "Applications":
                   return <Applications />;
-                  break;
                 case "My Applications":
                   return <MyApplications />;
-                  break;
-
                 default:
-                  <MyProfile />;
-                  break;
+                  return <MyProfile />;
               }
             })()}
           </div>

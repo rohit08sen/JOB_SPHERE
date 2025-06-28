@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { toast } from "react-toastify";
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -11,7 +11,7 @@ const userSlice = createSlice({
     message: null,
   },
   reducers: {
-    registerRequest(state, action) {
+    registerRequest(state) {
       state.loading = true;
       state.isAuthenticated = false;
       state.user = {};
@@ -32,7 +32,7 @@ const userSlice = createSlice({
       state.error = action.payload;
       state.message = null;
     },
-    loginRequest(state, action) {
+    loginRequest(state) {
       state.loading = true;
       state.isAuthenticated = false;
       state.user = {};
@@ -53,10 +53,8 @@ const userSlice = createSlice({
       state.error = action.payload;
       state.message = null;
     },
-    fetchUserRequest(state, action) {
+    fetchUserRequest(state) {
       state.loading = true;
-      state.isAuthenticated = false;
-      state.user = {};
       state.error = null;
     },
     fetchUserSuccess(state, action) {
@@ -85,6 +83,7 @@ const userSlice = createSlice({
       state.error = null;
       state.user = state.user;
     },
+   
   },
 });
 
@@ -119,6 +118,7 @@ export const login = (data) => async (dispatch) => {
     );
     dispatch(userSlice.actions.loginSuccess(response.data));
     dispatch(userSlice.actions.clearAllErrors());
+    toast.success("Loggin successfully.");
   } catch (error) {
     dispatch(userSlice.actions.loginFailed(error.response.data.message));
   }
@@ -128,7 +128,7 @@ export const getUser = () => async (dispatch) => {
   dispatch(userSlice.actions.fetchUserRequest());
   try {
     const response = await axios.get(
-      "http://localhost:4000/api/v1/user/getuser",
+      "http://localhost:4000/api/v1/user/me",
       {
         withCredentials: true,
       }
@@ -157,5 +157,7 @@ export const logout = () => async (dispatch) => {
 export const clearAllUserErrors = () => (dispatch) => {
   dispatch(userSlice.actions.clearAllErrors());
 };
+
+
 
 export default userSlice.reducer;

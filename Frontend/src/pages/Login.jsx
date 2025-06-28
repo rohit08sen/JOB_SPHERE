@@ -26,6 +26,7 @@ const Login = () => {
     formData.append("email", email);
     formData.append("password", password);
     dispatch(login(formData));
+    
   };
 
   useEffect(() => {
@@ -86,6 +87,9 @@ const Login = () => {
             </button>
             <Link to={"/register"}>Register Now</Link>
           </form>
+        </div>
+        <div className="loginImage">
+          <img src="login.png" alt="" />
         </div>
       </section>
     </>
