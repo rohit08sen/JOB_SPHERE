@@ -4,7 +4,12 @@ import cors from "cors"
 import cookieParser from 'cookie-parser';
 import { errorMiddleware } from './middlewares/error.js';
 import fileUpload from 'express-fileupload';
+
 import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
