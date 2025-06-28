@@ -20,7 +20,7 @@ config({
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL], //to connect with frontend
+    origin: "http://localhost:5173", //to connect with frontend
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     credentials: true,
   })
