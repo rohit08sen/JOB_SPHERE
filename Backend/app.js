@@ -80,6 +80,16 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/job", jobRouter);
 app.use("/api/v1/application", applicationRouter);
 
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../Frontend/dist")));
+
+  // Important: use RegExp instead of "*"
+  app.get(/(.*)/, (req, res) => {
+    res.sendFile(path.join(__dirname, "../Frontend/dist/index.html"));
+  });
+}
+
 app.use(errorMiddleware)
 
 

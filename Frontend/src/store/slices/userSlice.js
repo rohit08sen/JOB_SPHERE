@@ -1,6 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
+
+// Create axios instance *here itself*
+const axiosInstance = axios.create({
+  baseURL:
+    import.meta.env.MODE === "development"
+      ? "http://localhost:4000/api/v1"
+      : "/api/v1",
+  withCredentials: true, // send cookie automatically
+});
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -69,35 +79,26 @@ const userSlice = createSlice({
       state.user = {};
       state.error = action.payload;
     },
-    logoutSuccess(state, action) {
+    logoutSuccess(state) {
       state.isAuthenticated = false;
       state.user = {};
       state.error = null;
     },
     logoutFailed(state, action) {
-      state.isAuthenticated = state.isAuthenticated;
-      state.user = state.user;
       state.error = action.payload;
     },
-    clearAllErrors(state, action) {
+    clearAllErrors(state) {
       state.error = null;
-      state.user = state.user;
     },
-   
   },
 });
 
 export const register = (data) => async (dispatch) => {
   dispatch(userSlice.actions.registerRequest());
   try {
-    const response = await axios.post(
-      "http://localhost:4000/api/v1/user/register",
-      data,
-      {
-        withCredentials: true,
-        headers: { "Content-Type": "multipart/form-data" },
-      }
-    );
+    const response = await axiosInstance.post("/user/register", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
     dispatch(userSlice.actions.registerSuccess(response.data));
     dispatch(userSlice.actions.clearAllErrors());
   } catch (error) {
@@ -108,17 +109,12 @@ export const register = (data) => async (dispatch) => {
 export const login = (data) => async (dispatch) => {
   dispatch(userSlice.actions.loginRequest());
   try {
-    const response = await axios.post(
-      "http://localhost:4000/api/v1/user/login",
-      data,
-      {
-        withCredentials: true,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const response = await axiosInstance.post("/user/login", data, {
+      headers: { "Content-Type": "application/json" },
+    });
     dispatch(userSlice.actions.loginSuccess(response.data));
     dispatch(userSlice.actions.clearAllErrors());
-    toast.success("Loggin successfully.");
+    toast.success("Logged in successfully.");
   } catch (error) {
     dispatch(userSlice.actions.loginFailed(error.response.data.message));
   }
@@ -127,26 +123,17 @@ export const login = (data) => async (dispatch) => {
 export const getUser = () => async (dispatch) => {
   dispatch(userSlice.actions.fetchUserRequest());
   try {
-    const response = await axios.get(
-      "http://localhost:4000/api/v1/user/me",
-      {
-        withCredentials: true,
-      }
-    );
+    const response = await axiosInstance.get("/user/me");
     dispatch(userSlice.actions.fetchUserSuccess(response.data.user));
     dispatch(userSlice.actions.clearAllErrors());
   } catch (error) {
     dispatch(userSlice.actions.fetchUserFailed(error.response.data.message));
   }
 };
+
 export const logout = () => async (dispatch) => {
   try {
-    const response = await axios.get(
-      "http://localhost:4000/api/v1/user/logout",
-      {
-        withCredentials: true,
-      }
-    );
+    await axiosInstance.get("/user/logout");
     dispatch(userSlice.actions.logoutSuccess());
     dispatch(userSlice.actions.clearAllErrors());
   } catch (error) {
@@ -157,7 +144,5 @@ export const logout = () => async (dispatch) => {
 export const clearAllUserErrors = () => (dispatch) => {
   dispatch(userSlice.actions.clearAllErrors());
 };
-
-
 
 export default userSlice.reducer;
