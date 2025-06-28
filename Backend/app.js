@@ -4,6 +4,7 @@ import cors from "cors"
 import cookieParser from 'cookie-parser';
 import { errorMiddleware } from './middlewares/error.js';
 import fileUpload from 'express-fileupload';
+import path from "path";
 
 const app = express();
 
