@@ -113,8 +113,8 @@ export const login = (data) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
     });
     dispatch(userSlice.actions.loginSuccess(response.data));
-    dispatch(userSlice.actions.clearAllErrors());
     toast.success("Logged in successfully.");
+    dispatch(userSlice.actions.clearAllErrors());
   } catch (error) {
     dispatch(userSlice.actions.loginFailed(error.response.data.message));
   }
@@ -127,9 +127,21 @@ export const getUser = () => async (dispatch) => {
     dispatch(userSlice.actions.fetchUserSuccess(response.data.user));
     dispatch(userSlice.actions.clearAllErrors());
   } catch (error) {
-    dispatch(userSlice.actions.fetchUserFailed(error.response.data.message));
+    // Check if error response exists and status is 401
+    if (error.response && error.response.status === 401) {
+      // Not logged in, clear user, do NOT set error message
+      dispatch(userSlice.actions.fetchUserFailed(null));
+    } else {
+      // Other errors: save the error message
+      const message =
+        error.response?.data?.message ||
+        error.message ||
+        "Something went wrong.";
+      dispatch(userSlice.actions.fetchUserFailed(message));
+    }
   }
 };
+
 
 export const logout = () => async (dispatch) => {
   try {

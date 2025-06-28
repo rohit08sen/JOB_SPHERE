@@ -31,7 +31,7 @@ const Jobs = () => {
       dispatch(clearAllJobErrors());
     }
     dispatch(fetchJobs(city, niche, searchKeyword));
-  }, [dispatch, error, city, niche]);
+  }, [dispatch, error, city, niche, searchKeyword]);
 
   const handleSearch = () => {
     dispatch(fetchJobs(city, niche, searchKeyword));

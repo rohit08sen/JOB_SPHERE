@@ -84,7 +84,7 @@ const Register = () => {
     if (isAuthenticated) {
       navigateTo("/");
     }
-  }, [dispatch, error, loading, isAuthenticated, message]);
+  }, [dispatch, error, loading, isAuthenticated, message, navigateTo]);
 
   return (
     <>
