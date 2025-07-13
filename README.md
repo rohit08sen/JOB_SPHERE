@@ -2,8 +2,6 @@
 
 **JobSphere** is a full-featured job portal enabling seamless interaction between job seekers and employers. It supports role-based access, secure authentication, automated job alerts, and an intuitive interface for posting and applying to jobs.
 
-![Build](https://img.shields.io/badge/build-passing-brightgreen)
-![Node.js](https://img.shields.io/badge/Node.js-18+-informational)
 
 ---
 
@@ -123,13 +121,5 @@ SMTP_PORT=465
 Check out the live demo here:
 
 👉 [Live Demo](https://jobsphere-cgg2.onrender.com/)
-
-## 🙌 Contact
-
-Feel free to connect or ask questions:
-
-- **GitHub:** [rohit08sen](https://github.com/rohit08sen)
-- **LinkedIn:** [Rohit Senapati](https://www.linkedin.com/in/rohit08sen/)
-- **Email:** rohitsenapati543@gmail.com
 
 
